@@ -6,7 +6,7 @@
 		<v-app-bar app>
 			wat v-app-bar
 		</v-app-bar>
-		<v-main>
+		<v-main ref="main">
 			<v-container>
 				<Nuxt />
 			</v-container>
