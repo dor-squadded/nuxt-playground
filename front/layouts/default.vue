@@ -1,10 +1,10 @@
 <template>
 	<v-app>
-		<v-navigation-drawer app>
+		<v-navigation-drawer v-model="drawer" app>
 			wat v-navigation-drawer
 		</v-navigation-drawer>
 		<v-app-bar app>
-			wat v-app-bar
+			<v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 		</v-app-bar>
 		<v-main ref="main">
 			<v-container>
@@ -20,5 +20,10 @@
 <script>
 export default {
 	name: 'DefaultLayout',
+	data() {
+		return {
+			drawer: false,
+		};
+	},
 };
 </script>
