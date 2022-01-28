@@ -1,5 +1,5 @@
 export const state = () => ({
-	list: [],
+	users: [],
 });
 
 export const DataMutations = {
@@ -8,16 +8,21 @@ export const DataMutations = {
 
 export const mutations = {
 	setData(state, data) {
-		state.list = data;
+		state.users = data;
 	},
 };
 
 export const actions = {
-	async fetchData({ commit }) {
-		const response = await fetch('http://127.0.0.1:8080/', {
-			method: 'POST',
-		});
-		const data = await response.json();
-		commit(DataMutations.setData, data);
+	async fetchData({ commit }, wat) {
+		try {
+			const data = await this.$axios.$post(`http://127.0.0.1:8080/users?userSeachString=${wat}`);
+			if (!data) {
+				return;
+			}
+			commit(DataMutations.setData, data);
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.log(error);
+		}
 	},
 };

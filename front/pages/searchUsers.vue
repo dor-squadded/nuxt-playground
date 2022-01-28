@@ -1,24 +1,24 @@
 <template>
 	<div>
-		<h3>Start playing</h3>
-		<div v-for="task in tasks" :key="task">
-			<TaskEntry :task="task" />
+		<v-text-field v-model="userSearchString" />
+		<v-btn @click="fetchData(userSearchString)">
+			click to get data
+		</v-btn>
+		<div v-for="user in users" :key="user._id">
+			<v-lazy>
+				<p>{{ user.name }}</p>
+			</v-lazy>
 		</div>
 	</div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import TaskEntry from '../components/TaskEntry.vue';
 export default {
 	name: 'IndexPage',
-	components: {
-		TaskEntry,
-	},
 	data() {
 		return {
 			userSearchString: '',
-			tasks: ['Create pagination of users search'],
 		};
 	},
 	computed: {
