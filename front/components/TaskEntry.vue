@@ -10,6 +10,7 @@ export default {
 		task: {
 			type: String,
 			default: '',
+
 		},
 	},
 };
