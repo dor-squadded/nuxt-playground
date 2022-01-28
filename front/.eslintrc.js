@@ -8,7 +8,7 @@ module.exports = {
 		parser: '@babel/eslint-parser',
 		requireConfigFile: false,
 	},
-	extends: ['@nuxtjs', 'plugin:nuxt/recommended'],
+	extends: ['@nuxtjs', 'plugin:nuxt/recommended', 'prettier'],
 	globals: {
 		spyOn: true,
 		jasmine: true,

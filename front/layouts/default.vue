@@ -28,9 +28,7 @@
 				<Nuxt />
 			</v-container>
 		</v-main>
-		<v-footer app>
-			wat footer
-		</v-footer>
+		<v-footer app> wat footer </v-footer>
 	</v-app>
 </template>
 
