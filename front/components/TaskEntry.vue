@@ -10,11 +10,9 @@ export default {
 		task: {
 			type: String,
 			default: '',
-
 		},
 	},
 };
 </script>
 
-<style>
-</style>
+<style></style>
