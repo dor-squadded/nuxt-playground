@@ -1,9 +1,7 @@
 <template>
 	<v-app>
 		<v-navigation-drawer v-model="drawer" app>
-			<v-list
-				nav
-			>
+			<v-list nav>
 				<v-list-item
 					v-for="item in items"
 					:key="item.title"

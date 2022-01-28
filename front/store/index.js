@@ -15,7 +15,9 @@ export const mutations = {
 export const actions = {
 	async fetchData({ commit }, wat) {
 		try {
-			const data = await this.$axios.$post(`http://127.0.0.1:8080/users?userSeachString=${wat}`);
+			const data = await this.$axios.$post(
+				`http://127.0.0.1:8080/users?userSeachString=${wat}`,
+			);
 			if (!data) {
 				return;
 			}
