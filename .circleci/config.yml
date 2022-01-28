@@ -20,11 +20,12 @@ version: 2.1
 #           pkg-manager: yarn
 jobs:
   client-test:
+    docker:
+      - image: cimg/node:17.2.0
     steps:
       - checkout
 
       - run:
-          version: '16.10'
           command: yarn install
           working_directory: front
 
