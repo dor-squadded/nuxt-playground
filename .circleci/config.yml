@@ -20,3 +20,32 @@ workflows:
           version: '16.10'
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: yarn
+jobs:
+  client-test:
+    docker:
+      - image: circleci/node:10.18
+    steps:
+      - checkout
+
+      - run:
+          command: yarn install
+          working_directory: front
+
+      - run:
+          command: yarn lint
+          working_directory: front
+
+      - run:
+          command: yarn test
+          working_directory: front
+
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .git
+            - .circleci
+            - front
+workflows:
+    client:
+      jobs:
+        - client-test
