@@ -1,24 +1,8 @@
 <template>
 	<v-app>
-		<v-navigation-drawer v-model="drawer" app>
-			<v-list nav>
-				<v-list-item
-					v-for="item in items"
-					:key="item.title"
-					link
-					@click="$router.push(item.linkTo)"
-				>
-					<v-list-item-icon>
-						<v-icon>{{ item.icon }}</v-icon>
-					</v-list-item-icon>
-					<v-list-item-content>
-						<v-list-item-title>{{ item.title }}</v-list-item-title>
-					</v-list-item-content>
-				</v-list-item>
-			</v-list>
-		</v-navigation-drawer>
+		<NavigationDrawer :items="items" :drawer-active.sync="drawerActive" />
 		<v-app-bar app>
-			<v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+			<v-app-bar-nav-icon @click.stop="drawerActive = !drawerActive" />
 		</v-app-bar>
 		<v-main ref="main">
 			<v-container>
@@ -33,18 +17,24 @@
 </template>
 
 <script>
+import NavigationDrawer from '../components/DefaultLayout/NavigationDrawer.vue';
 export default {
 	name: 'DefaultLayout',
+	components: {
+		NavigationDrawer,
+	},
 	data() {
 		return {
-			drawer: false,
+			drawerActive: false,
 			items: [
 				{ title: 'Home', icon: 'mdi-home', linkTo: '/' },
-				{ title: 'Search Users', icon: 'mdi-help-box', linkTo: '/searchUsers' },
+				{ title: 'Users', icon: 'mdi-help-box', linkTo: '/users' },
+				{ title: 'Posts', icon: 'mdi-receipt', linkTo: '/posts' },
 			],
 			headersMap: {
 				index: 'Welcome to the playground',
-				searchUsers: 'Search for users',
+				users: 'Search for users',
+				posts: 'See all posts',
 			},
 		};
 	},

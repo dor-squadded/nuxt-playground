@@ -17,7 +17,6 @@ export default {
 	},
 	data() {
 		return {
-			userSearchString: '',
 			tasks: ['Create pagination of users search'],
 		};
 	},
@@ -25,7 +24,7 @@ export default {
 		...mapState({ users: 'users' }),
 	},
 	methods: {
-		...mapActions(['fetchData']),
+		...mapActions(['fetchUsers']),
 	},
 };
 </script>
