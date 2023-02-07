@@ -41,6 +41,7 @@ export default {
 			items: [
 				{ title: 'Home', icon: 'mdi-home', linkTo: '/' },
 				{ title: 'Search Users', icon: 'mdi-help-box', linkTo: '/searchUsers' },
+				{ title: 'Hello Morin', icon: 'mdi-bookmark-music', linkTo: '/morin' },
 			],
 			headersMap: {
 				index: 'Welcome to the playground',
