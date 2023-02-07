@@ -22,21 +22,39 @@ export const mutations = {
 	},
 };
 
+const handleUsersData = ({ commit }, data) => {
+	if (!data) {
+		commit(DataMutations.setLoading, { isLoading: false });
+		return;
+	}
+	commit(DataMutations.setUsers, data);
+	commit(DataMutations.setLoading, { isLoading: false });
+};
+
 export const actions = {
-	async fetchUsers({ commit, rootState }, { userSearchString, getNextUsers, getPrevUsers }) {
+	async fetchUsers({ commit }, { userSearchString }) {
+		try {
+			commit(DataMutations.setLoading, { isLoading: true });
+			const data = await this.$axios.$post('http://127.0.0.1:8080/users', {
+				userSearchString,
+			});
+			handleUsersData({ commit }, data);
+		} catch (error) {
+			commit(DataMutations.setLoading, { isLoading: false });
+			// eslint-disable-next-line no-console
+			console.log(error);
+		}
+	},
+	async fetchNextUsers({ commit, rootState }, { userSearchString }) {
 		try {
 			commit(DataMutations.setLoading, { isLoading: true });
 			const { users } = rootState;
-			const lastUserName = users.length && getNextUsers && users[users.length - 1].name;
-			const data = await this.$axios.$post('http://127.0.0.1:8080/users', {
-				lastUserName,
+			const usernameForNextPage = users[users.length - 1].name;
+			const data = await this.$axios.$post('http://127.0.0.1:8080/users/next-page', {
+				usernameForNextPage,
 				userSearchString,
 			});
-			if (!data) {
-				return;
-			}
-			commit(DataMutations.setUsers, data);
-			commit(DataMutations.setLoading, { isLoading: false });
+			handleUsersData({ commit }, data);
 		} catch (error) {
 			commit(DataMutations.setLoading, { isLoading: false });
 			// eslint-disable-next-line no-console
@@ -50,6 +68,7 @@ export const actions = {
 				creationTs,
 			});
 			if (!data) {
+				commit(DataMutations.setLoading, { isLoading: false });
 				return;
 			}
 			commit(DataMutations.setPosts, data);
