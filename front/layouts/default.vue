@@ -28,6 +28,7 @@ export default {
 			drawerActive: false,
 			items: [
 				{ title: 'Home', icon: 'mdi-home', linkTo: '/' },
+				{ title: 'Hello Morin', icon: 'mdi-bookmark-music', linkTo: '/morin' },
 				{ title: 'Users', icon: 'mdi-help-box', linkTo: '/users' },
 				{ title: 'Posts', icon: 'mdi-receipt', linkTo: '/posts' },
 			],
