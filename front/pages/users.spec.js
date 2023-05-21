@@ -1,20 +1,19 @@
-// Import the `mount()` method from Vue Test Utils
-import { mount, createLocalVue } from '@vue/test-utils';
-import Vuex from 'vuex';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import Vuex, { Store } from 'vuex';
+import Vuetify from 'vuetify';
 import { actions as storeActions } from '../store/index';
 import users from './users.vue';
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
+localVue.use(Vuetify);
 
 test('displays message', () => {
-	let store;
-	store = new Vuex.Store({
+	const store = new Store({
 		storeActions,
 	});
-	// mount() returns a wrapped Vue component we can interact with
-	const wrapper = mount(users, {
+	const wrapper = shallowMount(users, {
 		propsData: {
 			msg: 'Hello world',
 		},
