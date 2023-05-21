@@ -35,6 +35,7 @@ export const actions = {
 	async fetchUsers({ commit }, { userSearchString }) {
 		try {
 			commit(DataMutations.setLoading, { isLoading: true });
+
 			const data = await this.$axios.$post('http://127.0.0.1:8080/users', {
 				userSearchString,
 			});
