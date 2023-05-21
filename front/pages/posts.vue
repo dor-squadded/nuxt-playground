@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<v-btn :loading="loading" @click="fetchPosts(lastPostCreationTs)"> click to get sample </v-btn>
+		<v-btn :loading="loading" @click="fetchPosts(lastPostCreationTs)">
+			click to get sample
+		</v-btn>
 		{{ lastPostCreationTs }}
 		<div v-for="post in posts" :key="post._id">
 			<v-lazy>
